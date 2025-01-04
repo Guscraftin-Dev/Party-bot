@@ -15,7 +15,6 @@ module.exports = {
         const dateStart = interaction.fields.getTextInputValue("dateStart");
         const dateEnd = interaction.fields.getTextInputValue("dateEnd");
 
-
         // Check the date format
         const nameVocal = await getValidDate(dateStart, dateEnd, interaction);
         if (nameVocal === "") return;
@@ -23,55 +22,58 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         // Create the category
-        const cate = await interaction.guild.channels.create({
-            name: `fête de ${interaction.member.displayName}`,
-            type: ChannelType.GuildCategory,
-            position: 0,
-            permissionOverwrites: [
-                {
-                    id: interaction.member,
-                    allow: [
-                        PermissionFlagsBits.ViewChannel,
-                        PermissionFlagsBits.ManageChannels,
-                        PermissionFlagsBits.ManageRoles,
-                        PermissionFlagsBits.ManageWebhooks,
-                        PermissionFlagsBits.CreateInstantInvite,
-                        PermissionFlagsBits.SendMessages,
-                        PermissionFlagsBits.SendMessagesInThreads,
-                        PermissionFlagsBits.CreatePublicThreads,
-                        PermissionFlagsBits.CreatePrivateThreads,
-                        PermissionFlagsBits.EmbedLinks,
-                        PermissionFlagsBits.AttachFiles,
-                        PermissionFlagsBits.AddReactions,
-                        PermissionFlagsBits.UseExternalEmojis,
-                        PermissionFlagsBits.UseExternalStickers,
-                        PermissionFlagsBits.MentionEveryone,
-                        PermissionFlagsBits.ManageMessages,
-                        PermissionFlagsBits.ManageThreads,
-                        PermissionFlagsBits.ReadMessageHistory,
-                        PermissionFlagsBits.SendTTSMessages,
-                        PermissionFlagsBits.UseApplicationCommands,
-                        PermissionFlagsBits.SendVoiceMessages,
-                        PermissionFlagsBits.Connect,
-                        PermissionFlagsBits.Speak,
-                        PermissionFlagsBits.Stream,
-                        PermissionFlagsBits.UseEmbeddedActivities,
-                        PermissionFlagsBits.UseSoundboard,
-                        PermissionFlagsBits.UseExternalSounds,
-                        PermissionFlagsBits.UseVAD,
-                        PermissionFlagsBits.PrioritySpeaker,
-                        PermissionFlagsBits.MuteMembers,
-                        PermissionFlagsBits.DeafenMembers,
-                        PermissionFlagsBits.MoveMembers,
-                        PermissionFlagsBits.ManageEvents,
-                    ],
-                },
-                {
-                    id: interaction.guild.id,
-                    deny: [PermissionFlagsBits.ViewChannel],
-                },
-            ],
-        }).then(categorie => categorie).catch(console.error);
+        const cate = await interaction.guild.channels
+            .create({
+                name: `fête de ${interaction.member.displayName}`,
+                type: ChannelType.GuildCategory,
+                position: 0,
+                permissionOverwrites: [
+                    {
+                        id: interaction.member,
+                        allow: [
+                            PermissionFlagsBits.ViewChannel,
+                            PermissionFlagsBits.ManageChannels,
+                            PermissionFlagsBits.ManageRoles,
+                            PermissionFlagsBits.ManageWebhooks,
+                            PermissionFlagsBits.CreateInstantInvite,
+                            PermissionFlagsBits.SendMessages,
+                            PermissionFlagsBits.SendMessagesInThreads,
+                            PermissionFlagsBits.CreatePublicThreads,
+                            PermissionFlagsBits.CreatePrivateThreads,
+                            PermissionFlagsBits.EmbedLinks,
+                            PermissionFlagsBits.AttachFiles,
+                            PermissionFlagsBits.AddReactions,
+                            PermissionFlagsBits.UseExternalEmojis,
+                            PermissionFlagsBits.UseExternalStickers,
+                            PermissionFlagsBits.MentionEveryone,
+                            PermissionFlagsBits.ManageMessages,
+                            PermissionFlagsBits.ManageThreads,
+                            PermissionFlagsBits.ReadMessageHistory,
+                            PermissionFlagsBits.SendTTSMessages,
+                            PermissionFlagsBits.UseApplicationCommands,
+                            PermissionFlagsBits.SendVoiceMessages,
+                            PermissionFlagsBits.Connect,
+                            PermissionFlagsBits.Speak,
+                            PermissionFlagsBits.Stream,
+                            PermissionFlagsBits.UseEmbeddedActivities,
+                            PermissionFlagsBits.UseSoundboard,
+                            PermissionFlagsBits.UseExternalSounds,
+                            PermissionFlagsBits.UseVAD,
+                            PermissionFlagsBits.PrioritySpeaker,
+                            PermissionFlagsBits.MuteMembers,
+                            PermissionFlagsBits.DeafenMembers,
+                            PermissionFlagsBits.MoveMembers,
+                            PermissionFlagsBits.ManageEvents,
+                        ],
+                    },
+                    {
+                        id: interaction.guild.id,
+                        deny: [PermissionFlagsBits.ViewChannel],
+                    },
+                ],
+            })
+            .then(categorie => categorie)
+            .catch(console.error);
 
         // Create the channels
         const cateId = cate.id;
@@ -82,9 +84,7 @@ module.exports = {
             permissionOverwrites: [
                 {
                     id: interaction.member,
-                    allow: [
-                        PermissionFlagsBits.ViewChannel,
-                    ],
+                    allow: [PermissionFlagsBits.ViewChannel],
                 },
                 {
                     id: interaction.guild.id,
@@ -120,15 +120,11 @@ module.exports = {
             permissionOverwrites: [
                 {
                     id: interaction.member,
-                    allow: [
-                        PermissionFlagsBits.ViewChannel,
-                    ],
+                    allow: [PermissionFlagsBits.ViewChannel],
                 },
                 {
                     id: interaction.guild.id,
-                    allow: [
-                        PermissionFlagsBits.MentionEveryone,
-                    ],
+                    allow: [PermissionFlagsBits.MentionEveryone],
                     deny: [
                         PermissionFlagsBits.ViewChannel,
                         PermissionFlagsBits.ManageChannels,
@@ -145,16 +141,12 @@ module.exports = {
             permissionOverwrites: [
                 {
                     id: interaction.guild.id,
-                    allow: [
-                        PermissionFlagsBits.MentionEveryone,
-                    ],
-                    deny: [
-                        PermissionFlagsBits.ViewChannel,
-                    ],
+                    allow: [PermissionFlagsBits.MentionEveryone],
+                    deny: [PermissionFlagsBits.ViewChannel],
                 },
             ],
         });
-        const defaultChannel = await cate.children.create({
+        await cate.children.create({
             name: "Discussion",
             type: ChannelType.GuildText,
         });
@@ -164,9 +156,7 @@ module.exports = {
             permissionOverwrites: [
                 {
                     id: interaction.member,
-                    allow: [
-                        PermissionFlagsBits.ViewChannel,
-                    ],
+                    allow: [PermissionFlagsBits.ViewChannel],
                 },
                 {
                     id: interaction.guild.id,
